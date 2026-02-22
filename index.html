@@ -323,10 +323,12 @@
                 <div class="resultados-busqueda" id="resultadosBusqueda"></div>
             </div>
             <div class="filtros" id="filtros">
-                <button class="filtro-btn activo" onclick="filtrarPedidos('todos')">Todos</button>
-                <button class="filtro-btn" onclick="filtrarPedidos('recibido')">Recibidos</button>
-                <button class="filtro-btn" onclick="filtrarPedidos('fabricacion')">Fabricación</button>
-                <button class="filtro-btn" onclick="filtrarPedidos('entregado')">Entregados</button>
+                <button class="filtro-btn activo" onclick="filtrarPedidos('todos')">📦 Todos</button>
+                <button class="filtro-btn" onclick="filtrarPedidos('recibido')">📥 Recibidos</button>
+                <button class="filtro-btn" onclick="filtrarPedidos('fabricacion')">🔨 Fabricación</button>
+                <button class="filtro-btn" onclick="filtrarPedidos('revision')">🔍 Revisión</button>
+                <button class="filtro-btn" onclick="filtrarPedidos('listo')">✅ Listos</button>
+                <button class="filtro-btn" onclick="filtrarPedidos('entregado')">📦 Entregados</button>
             </div>
             <div id="listaPedidos"></div>
         </div>
@@ -927,7 +929,7 @@
                         <div class="card-info"><strong>Total:</strong> $${(p.totalFinal||0).toLocaleString('es-CL')}</div>
                         <div class="card-info"><strong>Comuna:</strong> ${p.comuna||'N/A'}</div>
                         <div class="card-info"><strong>Fecha:</strong> ${new Date(p.fechaPedido).toLocaleDateString()}</div>
-                        ${p.estado !== 'entregado' ? `<div class="form-grupo"><select class="form-input" onchange="cambiarEstado(${p.id}, this.value)"><option value="recibido" ${p.estado==='recibido'?'selected':''}>Recibido</option><option value="fabricacion" ${p.estado==='fabricacion'?'selected':''}>En Fabricación</option><option value="revision" ${p.estado==='revision'?'selected':''}>En Revisión</option><option value="listo" ${p.estado==='listo'?'selected':''}>Listo</option><option value="entregado" ${p.estado==='entregado'?'selected':''}>Entregado</option></select></div>` : ''}
+                        <div class="form-grupo"><select class="form-input" onchange="cambiarEstado(${p.id}, this.value)"><option value="recibido" ${p.estado==='recibido'?'selected':''}>📥 Recibido</option><option value="fabricacion" ${p.estado==='fabricacion'?'selected':''}>🔨 En Fabricación</option><option value="revision" ${p.estado==='revision'?'selected':''}>🔍 En Revisión</option><option value="listo" ${p.estado==='listo'?'selected':''}>✅ Listo para Entrega</option><option value="entregado" ${p.estado==='entregado'?'selected':''}>📦 Entregado</option></select></div>
                         <div class="card-acciones">
                             <button class="btn btn-ver" onclick="verDetalle(${p.id})">Ver Detalle</button>
                             <button class="btn btn-link" onclick="mostrarFormulario(${p.id})" style="background:#f59e0b">✏️</button>
@@ -1022,7 +1024,7 @@
                 ${p.observaciones?`<div style="margin-top:15px;background:#f9fafb;padding:10px;border-radius:8px"><strong>Observaciones:</strong><p style="margin-top:5px">${p.observaciones}</p></div>`:''}
                 ${imgsHTML}
                 <div class="seccion-titulo">Estado</div>
-                ${p.estado!=='entregado'?`<select class="form-input" onchange="cambiarEstadoDetalle(this.value)"><option value="recibido" ${p.estado==='recibido'?'selected':''}>Pedido Recibido</option><option value="fabricacion" ${p.estado==='fabricacion'?'selected':''}>En Fabricación</option><option value="revision" ${p.estado==='revision'?'selected':''}>En Revisión</option><option value="listo" ${p.estado==='listo'?'selected':''}>Listo</option><option value="entregado" ${p.estado==='entregado'?'selected':''}>Entregado</option></select>`:`<div style="background:#d1fae5;padding:15px;border-radius:10px;text-align:center;color:#065f46;font-weight:bold">✓ Entregado</div>`}
+                ${p.estado!=='entregado'?`<select class="form-input" onchange="cambiarEstadoDetalle(this.value)"><option value="recibido" ${p.estado==='recibido'?'selected':''}>📥 Pedido Recibido</option><option value="fabricacion" ${p.estado==='fabricacion'?'selected':''}>🔨 En Fabricación</option><option value="revision" ${p.estado==='revision'?'selected':''}>🔍 En Revisión</option><option value="listo" ${p.estado==='listo'?'selected':''}>✅ Listo para Entrega</option><option value="entregado" ${p.estado==='entregado'?'selected':''}>📦 Entregado</option></select>`:`<div style="background:#d1fae5;padding:15px;border-radius:10px;text-align:center;color:#065f46;font-weight:bold">✓ Entregado</div>`}
                 <div class="seccion-titulo">Línea de Tiempo</div>
                 <div class="timeline">${tlHTML}</div>`;
 
